@@ -1,5 +1,5 @@
 ---
-const title = 'Sign Up Now';
+const title = 'Join the list';
 ---
 
 <!doctype html>
@@ -7,78 +7,139 @@ const title = 'Sign Up Now';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Sign up today." />
-    <meta name="theme-color" content="#6d28d9" />
+    <meta name="description" content="Get thoughtful updates and early access. Join the list." />
+    <meta name="theme-color" content="#f7f7f8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;650;700&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body>
-    <main aria-label="Sign up offer">
-      <section class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-        <button class="close" type="button" aria-label="Close sign up pop-up" onclick="this.closest('.popup').hidden = true">
-          <span aria-hidden="true">×</span>
+    <main>
+      <section class="signup-card" role="dialog" aria-modal="true" aria-labelledby="signup-title" aria-describedby="signup-description">
+        <button class="close" type="button" aria-label="Close signup dialog" id="close-dialog">
+          <svg aria-hidden="true" viewBox="0 0 20 20" width="20" height="20"><path d="m5 5 10 10M15 5 5 15" /></svg>
         </button>
-        <div class="sparkle" aria-hidden="true">✦</div>
-        <p class="eyebrow">A little something for you</p>
-        <h1 id="popup-title">Sign Up Now</h1>
-        <p class="message">Be the first to hear about what’s new.</p>
-        <a class="signup" href="mailto:hello@example.com">Join the list <span aria-hidden="true">↗</span></a>
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 3 23 21H1L12 3Z" /></svg>
+        </div>
+        <p class="eyebrow">A note from us</p>
+        <h1 id="signup-title">Good things,<br />straight to your inbox.</h1>
+        <p class="message" id="signup-description">Get occasional product updates, thoughtful ideas, and early access. No noise, ever.</p>
+        <form id="signup-form">
+          <label for="email">Email address</label>
+          <div class="field-row">
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="you@example.com" required />
+            <button class="submit" type="submit">Join the list <span aria-hidden="true">↗</span></button>
+          </div>
+          <p class="privacy">By joining, you agree to receive occasional updates. Unsubscribe anytime.</p>
+          <p class="status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
       </section>
     </main>
+    <script>
+      const form = document.querySelector('#signup-form');
+      const emailInput = document.querySelector('#email');
+      const status = document.querySelector('#form-status');
+      const closeButton = document.querySelector('#close-dialog');
+      const dialog = document.querySelector('.signup-card');
+
+      form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!emailInput?.reportValidity()) return;
+        status.textContent = 'Opening your email app to finish joining…';
+        window.location.href = `mailto:hello@example.com?subject=${encodeURIComponent('Join the list')}&body=${encodeURIComponent(`Please add ${emailInput.value} to the list.`)}`;
+      });
+
+      closeButton?.addEventListener('click', () => {
+        dialog?.setAttribute('hidden', '');
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && dialog && !dialog.hasAttribute('hidden')) {
+          dialog.setAttribute('hidden', '');
+        }
+        if (event.key === 'Tab' && dialog && !dialog.hasAttribute('hidden')) {
+          const focusable = dialog.querySelectorAll('button, input, a[href], [tabindex]:not([tabindex="-1"])');
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }
+      });
+    </script>
   </body>
 </html>
 
 <style>
   :global(*) { box-sizing: border-box; }
-  :global(html) { min-height: 100%; background: #6d28d9; }
+  :global(html) { min-height: 100%; background: #f7f7f8; color-scheme: light; }
   :global(body) {
     display: grid;
     min-height: 100vh;
+    min-height: 100svh;
     margin: 0;
-    padding: 1.5rem;
+    padding: 24px;
     place-items: center;
-    color: #24113f;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: radial-gradient(ellipse at 50% 0%, #a78bfa 0, #7c3aed 42%, #4c1d95 100%);
+    color: #17121f;
+    font-family: Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(ellipse at 50% 0%, #f1eafe 0, #f7f7f8 48rem);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
-  main { width: min(100%, 34rem); }
-  .popup {
+  main { width: min(100%, 480px); }
+  .signup-card {
     position: relative;
-    overflow: hidden;
-    padding: clamp(2.5rem, 8vw, 4.5rem) clamp(1.5rem, 7vw, 4rem);
-    border: 1px solid #ffffffa8;
-    border-radius: 1.75rem;
-    background: #fffdf8;
-    box-shadow: 0 2rem 5rem #2e106566, 0 0 0 8px #ffffff20;
+    padding: 56px 48px 40px;
+    border: 1px solid #e8e5ed;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 12px 40px #2115330d, 0 2px 8px #21153308;
     text-align: center;
-    animation: arrive 450ms cubic-bezier(.2,.8,.2,1) both;
+    animation: arrive 200ms ease-out both;
   }
-  .popup[hidden] { display: none; }
+  .signup-card[hidden] { display: none; }
   .close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 16px;
+    right: 16px;
     display: grid;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 36px;
+    height: 36px;
     place-items: center;
-    border: 0;
-    border-radius: 50%;
-    color: #624a7e;
-    background: #f1eafb;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #6b6672;
+    background: transparent;
     cursor: pointer;
-    font: inherit;
-    font-size: 1.6rem;
-    line-height: 1;
-    transition: color 150ms ease, background 150ms ease, transform 150ms ease;
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
   }
-  .close:hover { color: white; background: #6d28d9; transform: rotate(90deg); }
-  .close:focus-visible, .signup:focus-visible { outline: 3px solid #7c3aed; outline-offset: 4px; }
-  .sparkle { display: grid; width: 3.5rem; height: 3.5rem; margin: 0 auto 1.25rem; place-items: center; border-radius: 1.2rem; color: #6d28d9; background: #efe7ff; font-size: 1.8rem; }
-  .eyebrow { margin: 0 0 .75rem; color: #76579a; font-size: .75rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-  h1 { margin: 0; color: #291446; font-size: clamp(2.5rem, 9vw, 4rem); line-height: .98; letter-spacing: -.065em; }
-  .message { max-width: 20rem; margin: 1.25rem auto 0; color: #715f82; font-size: 1.05rem; line-height: 1.6; }
-  .signup { display: inline-flex; gap: .65rem; align-items: center; justify-content: center; margin-top: 1.75rem; padding: .95rem 1.5rem; border-radius: 999px; color: white; background: #6d28d9; box-shadow: 0 .5rem 1.2rem #6d28d944; font-weight: 750; text-decoration: none; transition: transform 160ms ease, background 160ms ease; }
-  .signup:hover { transform: translateY(-2px); background: #5b21b6; }
-  @keyframes arrive { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-  @media (prefers-reduced-motion: reduce) { .popup { animation: none; } *, *::before, *::after { transition-duration: .01ms !important; } }
+  .close svg { fill: none; stroke: currentColor; stroke-linecap: round; stroke-width: 1.6; }
+  .close:hover { color: #21172e; background: #f5f3f7; }
+  .close:active { background: #ebe7f0; }
+  .close:focus-visible, .submit:focus-visible, input:focus-visible { outline: 2px solid #7c3aed; outline-offset: 3px; }
+  .brand-mark { display: grid; width: 48px; height: 48px; margin: 0 auto 24px; place-items: center; border: 1px solid #e9e0f8; border-radius: 12px; color: #6d28d9; background: #f6f1fd; }
+  .brand-mark svg { fill: currentColor; }
+  .eyebrow { margin: 0 0 12px; color: #7045a6; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  h1 { margin: 0; color: #17121f; font-size: clamp(28px, 7vw, 36px); font-weight: 600; line-height: 1.16; letter-spacing: -.045em; text-wrap: balance; }
+  .message { max-width: 330px; margin: 16px auto 32px; color: #625c68; font-size: 15px; line-height: 1.6; text-wrap: pretty; }
+  form { text-align: left; }
+  label { display: block; margin-bottom: 8px; color: #28232e; font-size: 13px; font-weight: 500; }
+  .field-row { display: flex; gap: 8px; }
+  input { min-width: 0; flex: 1; height: 44px; padding: 0 12px; border: 1px solid #d9d5df; border-radius: 8px; color: #21172e; background: #fff; font: inherit; font-size: 14px; transition: border-color 180ms ease, box-shadow 180ms ease; }
+  input::placeholder { color: #928c98; }
+  input:focus-visible { border-color: #8b5cf6; box-shadow: 0 0 0 3px #8b5cf61c; }
+  .submit { display: inline-flex; min-height: 44px; gap: 8px; align-items: center; justify-content: center; padding: 0 16px; border: 1px solid #6424c4; border-radius: 8px; color: #fff; background: #6d28d9; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500; white-space: nowrap; transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease; }
+  .submit:hover { background: #5b21b6; box-shadow: 0 3px 8px #6d28d92b; }
+  .submit:active { transform: translateY(1px); background: #4c1d95; }
+  .privacy { margin: 12px 0 0; color: #77717d; font-size: 12px; line-height: 1.5; }
+  .status { min-height: 20px; margin: 8px 0 0; color: #514562; font-size: 13px; line-height: 1.5; }
+  @keyframes arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 480px) { .signup-card { padding: 56px 24px 32px; } .field-row { flex-direction: column; } .submit { width: 100%; } }
+  @media (prefers-reduced-motion: reduce) { .signup-card { animation: none; } *, *::before, *::after { transition-duration: .01ms !important; } }
 </style>
