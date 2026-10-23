@@ -1,14 +1,28 @@
-# Orquestrator Test
+# Astro Starter
 
-This repository is the shared project checkout for development tasks tracked in Linear.
+Base de un proyecto Astro lista para empezar a desarrollar.
 
-## Development workflow
+## Requisitos
 
-- Work on a branch named for the Linear issue, such as `JUA-8`.
-- Push the issue branch and open a pull request against `main` for review.
-- Keep project source, documentation, and tests in this repository.
-- `WORKFLOW.md` and `elixir/` are local Symphony configuration and runner files; they are intentionally excluded from version control.
+- Node.js 20.3.0 o superior
+- npm
 
-## Setup and validation
+## Desarrollo
 
-Add the project's setup and test commands here when its application code is introduced.
+```sh
+npm install
+npm run dev
+```
+
+Astro inicia el servidor local y muestra la URL en la terminal.
+
+## Comandos
+
+| Comando | Descripción |
+| --- | --- |
+| `npm run dev` | Inicia el servidor de desarrollo. |
+| `npm run build` | Genera el sitio estático en `dist/`. |
+| `npm run preview` | Previsualiza la versión compilada. |
+| `npm run check` | Revisa TypeScript y errores de Astro. |
+
+Las páginas se agregan en `src/pages/`. Los componentes reutilizables pueden vivir en `src/components/` y los assets públicos en `public/`.
