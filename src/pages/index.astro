@@ -17,16 +17,20 @@ const title = 'Sign up for Orchestrix';
   <body>
     <main class="signup-page">
       <section class="signup-content" aria-labelledby="signup-title">
+        <a class="wordmark" href="#home" aria-label="Orchestrix home"><span aria-hidden="true">◈</span> Orchestrix</a>
         <h1 id="signup-title">Sign up for Orchestrix</h1>
+        <p class="intro">Enter your email to get started.</p>
         <form action="#" method="get">
           <label class="visually-hidden" for="email">Email address</label>
-          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" value="saasui" required />
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Email address" required />
           <button type="submit">
             <svg aria-hidden="true" viewBox="0 0 20 20"><rect x="1.5" y="3" width="17" height="14" rx="1.5" /><path d="m2.5 4 7.5 6 7.5-6" /></svg>
             <span>Continue with Email</span>
           </button>
         </form>
-        <a class="other-options" href="#signup-options"><span aria-hidden="true">←</span> Other Sign Up Options</a>
+        <div class="divider"><span>OR</span></div>
+        <a class="other-options" href="#signup-options">Other sign up options <span aria-hidden="true">→</span></a>
+        <p class="account-prompt">Already have an account? <a href="#login">Log in</a></p>
       </section>
 
       <footer>
@@ -51,29 +55,38 @@ const title = 'Sign up for Orchestrix';
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  .signup-page { position: relative; display: flex; min-height: 100vh; min-height: 100svh; flex-direction: column; align-items: center; border-right: 1px solid #17131b; border-left: 1px solid #17131b; }
-  .signup-content { width: min(100% - 40px, 270px); margin-top: 115px; text-align: center; }
-  h1 { margin: 0 0 24px; color: #fafafa; font-size: 34px; font-weight: 700; letter-spacing: -1.55px; line-height: 1.2; white-space: nowrap; }
+  .signup-page { position: relative; display: flex; min-height: 100vh; min-height: 100svh; flex-direction: column; align-items: center; justify-content: center; padding: 48px 20px 180px; background: radial-gradient(ellipse at 50% 28%, #111 0, #050505 43%, #000 78%); }
+  .signup-content { width: min(100%, 360px); padding: 30px; border: 1px solid #292929; border-radius: 12px; background: rgba(8, 8, 8, .88); box-shadow: 0 20px 80px rgba(0, 0, 0, .55); text-align: center; }
+  .wordmark { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 26px; color: #f5f5f5; font-size: 15px; font-weight: 600; letter-spacing: -.35px; text-decoration: none; }
+  .wordmark span { font-size: 21px; }
+  h1 { margin: 0 0 7px; color: #fafafa; font-size: 23px; font-weight: 600; letter-spacing: -.8px; line-height: 1.25; }
+  .intro { margin: 0 0 24px; color: #888; font-size: 13px; }
   form { display: grid; gap: 10px; }
-  input { width: 100%; height: 40px; padding: 0 11px; border: 1px solid #666; border-radius: 5px; outline: none; color: #f5f5f5; background: #050505; font: inherit; font-size: 13px; }
-  input:focus { border-color: #888; box-shadow: 0 0 0 1px #888; }
-  button { position: relative; display: flex; width: 100%; height: 41px; align-items: center; justify-content: center; border: 1px solid #e5e5e5; border-radius: 5px; color: #111; background: #fafafa; font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; }
+  input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid #383838; border-radius: 6px; outline: none; color: #f5f5f5; background: #050505; font: inherit; font-size: 13px; transition: border-color .15s, box-shadow .15s; }
+  input::placeholder { color: #777; }
+  input:focus { border-color: #888; box-shadow: 0 0 0 2px rgba(255,255,255,.08); }
+  button { position: relative; display: flex; width: 100%; height: 42px; align-items: center; justify-content: center; border: 1px solid #e5e5e5; border-radius: 6px; color: #111; background: #fafafa; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .15s; }
   button:hover { background: #e9e9e9; }
   button svg { position: absolute; left: 11px; width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.35; }
-  .other-options { display: inline-flex; align-items: center; gap: 5px; margin-top: 19px; color: #3291ff; font-size: 13px; line-height: 1.4; text-decoration: none; }
+  .divider { display: flex; align-items: center; gap: 12px; margin: 21px 0 17px; color: #626262; font-size: 10px; letter-spacing: .08em; }
+  .divider::before, .divider::after { height: 1px; flex: 1; background: #272727; content: ""; }
+  .other-options { display: inline-flex; align-items: center; gap: 6px; color: #aaa; font-size: 13px; line-height: 1.4; text-decoration: none; }
   .other-options:hover { color: #66adff; }
-  footer { position: absolute; right: 20px; bottom: 42px; left: 20px; color: #777; font-size: 11px; line-height: 1.5; text-align: center; }
+  .account-prompt { margin: 25px 0 0; color: #777; font-size: 12px; }
+  .account-prompt a { color: #ededed; text-decoration: none; }
+  .account-prompt a:hover { text-decoration: underline; }
+  footer { position: absolute; right: 20px; bottom: 30px; left: 20px; color: #777; font-size: 11px; line-height: 1.5; text-align: center; }
   footer p { margin: 0; }
   footer a { color: #f3f3f3; text-decoration: none; }
   footer a:hover { text-decoration: underline; }
-  .footer-rule { width: min(100%, 350px); height: 1px; margin: 26px auto; background: #252525; }
+  .footer-rule { width: min(100%, 350px); height: 1px; margin: 18px auto; background: #252525; }
   .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
   button:focus-visible, a:focus-visible { outline: 2px solid #3291ff; outline-offset: 3px; }
   @media (max-width: 520px) {
-    .signup-content { margin-top: clamp(80px, 16vh, 115px); }
-    h1 { font-size: clamp(27px, 7vw, 34px); letter-spacing: -1.2px; }
-    footer { bottom: 28px; }
-    .footer-rule { margin: 20px auto; }
+    .signup-page { justify-content: flex-start; padding: clamp(52px, 12vh, 90px) 16px 160px; }
+    .signup-content { padding: 26px 22px; }
+    footer { bottom: 24px; }
+    .footer-rule { margin: 15px auto; }
   }
   @media (max-height: 480px) {
     .signup-page { min-height: 480px; }
