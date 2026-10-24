@@ -1,4 +1,4 @@
-# orchestrics
+# Orchestrix
 
 Base de un proyecto Astro lista para empezar a desarrollar.
 
