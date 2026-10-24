@@ -55,8 +55,10 @@ const title = 'Sign up for Orchestrix';
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  .signup-page { position: relative; display: flex; min-height: 100vh; min-height: 100svh; flex-direction: column; align-items: center; justify-content: center; padding: 48px 20px 180px; background: radial-gradient(ellipse at 50% 28%, #111 0, #050505 43%, #000 78%); transition: background .5s ease; }
-  .signup-page:has(button:hover) { background: radial-gradient(ellipse at 50% 28%, #174b86 0, #0b2b50 43%, #06172b 78%); }
+  .signup-page { position: relative; isolation: isolate; display: flex; min-height: 100vh; min-height: 100svh; flex-direction: column; align-items: center; justify-content: center; padding: 48px 20px 180px; background: radial-gradient(ellipse at 50% 28%, #111 0, #050505 43%, #000 78%); }
+  /* Crossfade gradients through opacity; background images do not interpolate. */
+  .signup-page::before { position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at 50% 28%, #174b86 0, #0b2b50 43%, #06172b 78%); opacity: 0; pointer-events: none; content: ""; transition: opacity .5s ease; }
+  .signup-page:has(button:hover)::before { opacity: 1; }
   .signup-content { width: min(100%, 360px); padding: 30px; border: 1px solid #292929; border-radius: 12px; background: rgba(8, 8, 8, .88); box-shadow: 0 20px 80px rgba(0, 0, 0, .55); text-align: center; }
   .wordmark { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 26px; color: #f5f5f5; font-size: 15px; font-weight: 600; letter-spacing: -.35px; text-decoration: none; }
   .wordmark span { font-size: 21px; }
@@ -83,6 +85,9 @@ const title = 'Sign up for Orchestrix';
   .footer-rule { width: min(100%, 350px); height: 1px; margin: 18px auto; background: #252525; }
   .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
   button:focus-visible, a:focus-visible { outline: 2px solid #3291ff; outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    .signup-page::before { transition: none; }
+  }
   @media (max-width: 520px) {
     .signup-page { justify-content: flex-start; padding: clamp(52px, 12vh, 90px) 16px 160px; }
     .signup-content { padding: 26px 22px; }
