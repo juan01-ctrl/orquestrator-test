@@ -1,0 +1,185 @@
+---
+import { statusLabels } from '../features/tasks/state.js';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Browse, filter, and inspect recent task activity in Orchestrix." />
+    <meta name="theme-color" content="#000000" />
+    <title>Task activity · Orchestrix</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to task activity</a>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="Orchestrix home"><span aria-hidden="true">◈</span> Orchestrix</a>
+      <nav aria-label="Main navigation"><a href="/tasks" aria-current="page">Task activity</a></nav>
+    </header>
+    <main id="main">
+      <div class="page-heading">
+        <div><p class="eyebrow">Workspace overview</p><h1>Task activity</h1></div>
+        <span class="demo-label">Local demo data</span>
+      </div>
+      <p class="intro">Follow recent work, find a task, and take a closer look.</p>
+      <p class="fixture-note">This dashboard uses 36 sample tasks from a local fixture. It is not connected to live project activity.</p>
+
+      <section id="task-dashboard" aria-label="Task activity dashboard" aria-busy="true">
+        <form id="task-filters" role="search" aria-label="Filter tasks">
+          <div class="search-field">
+            <label for="task-search">Search by title</label>
+            <input id="task-search" name="q" type="search" placeholder="Find a task…" disabled />
+          </div>
+          <div>
+            <label for="task-status">Status</label>
+            <select id="task-status" name="status" disabled>
+              <option value="all">All statuses</option>
+              {Object.entries(statusLabels).map(([value, label]) => <option value={value}>{label}</option>)}
+            </select>
+          </div>
+          <div>
+            <label for="task-sort">Sort by</label>
+            <select id="task-sort" name="sort" disabled>
+              <option value="recent">Recently updated</option>
+              <option value="oldest">Oldest updated</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button type="submit" class="primary" disabled>Search</button>
+            <button type="button" data-clear-filters disabled>Clear filters</button>
+          </div>
+        </form>
+
+        <p id="task-loading" class="state-message" role="status">Loading task activity…</p>
+        <div id="task-error" class="state-message error-state" role="alert" hidden>
+          <h2>Task activity could not be loaded</h2>
+          <p>Check your connection and try again. Your search and filters are saved in the URL.</p>
+          <button id="task-retry" type="button">Try again</button>
+        </div>
+        <noscript><p class="state-message">Enable JavaScript to browse and filter this local task activity dashboard.</p></noscript>
+
+        <div id="task-results" hidden>
+          <div class="results-heading">
+            <h2>Recent tasks</h2>
+            <p id="task-summary" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+          </div>
+          <ul id="task-list" aria-label="Tasks"></ul>
+          <div id="task-empty" class="state-message" hidden>
+            <h3>No tasks found</h3>
+            <p>Try a different title or clear your filters to see all sample tasks.</p>
+            <button type="button" data-clear-filters>Clear filters</button>
+          </div>
+          <nav id="task-pagination" aria-label="Task pagination">
+            <p id="task-page"></p>
+            <div>
+              <button id="task-previous" type="button" aria-label="Previous page">← Previous</button>
+              <button id="task-next" type="button" aria-label="Next page">Next →</button>
+            </div>
+          </nav>
+        </div>
+
+        <dialog id="task-detail" aria-labelledby="detail-title">
+          <form method="dialog" class="dialog-close"><button aria-label="Close task details" autofocus>Close <span aria-hidden="true">×</span></button></form>
+          <h2 id="detail-title"></h2>
+          <div id="detail-body"></div>
+        </dialog>
+      </section>
+      <footer>Orchestrix <span aria-hidden="true">/</span> Task activity <span aria-hidden="true">·</span> Local fixture preview</footer>
+    </main>
+    <script>
+      import { initDashboard } from '../features/tasks/dashboard.js';
+      import fixtureUrl from '../features/tasks/fixture.json?url';
+      const root = document.getElementById('task-dashboard');
+      if (root) initDashboard(root, fixtureUrl);
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { min-width: 320px; color-scheme: dark; background: #000; }
+  body { margin: 0; color: #ededed; background: radial-gradient(ellipse at 50% 0, #131313, #000 70%); font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  button, input, select { font: inherit; }
+  button, input, select { min-height: 44px; border: 1px solid #414141; border-radius: 6px; color: #ededed; background: #111; }
+  button { padding: 9px 14px; font-weight: 500; cursor: pointer; }
+  button:hover:not(:disabled) { border-color: #8b8b8b; background: #202020; }
+  button:disabled, input:disabled, select:disabled { opacity: .5; cursor: not-allowed; }
+  button.primary { color: #111; background: #fafafa; border-color: #fafafa; }
+  button.primary:hover:not(:disabled) { background: #dcdcdc; }
+  :focus-visible { outline: 2px solid #66adff; outline-offset: 4px; }
+  .skip-link { position: absolute; top: 12px; left: 16px; z-index: 2; padding: 12px; color: #111; background: white; transform: translateY(-200%); }
+  .skip-link:focus { transform: translateY(0); }
+  .site-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 1200px; min-height: 80px; margin: auto; padding: 16px 32px; border-bottom: 1px solid #292929; }
+  .wordmark { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; letter-spacing: -.35px; text-decoration: none; }
+  .wordmark span { font-size: 24px; }
+  .site-header nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: #ccc; }
+  main { width: min(100%, 1200px); margin: auto; padding: 48px 32px 24px; }
+  .page-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .eyebrow { margin: 0 0 8px; color: #aaa; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; }
+  h1 { margin: 0; font-size: clamp(28px, 4vw, 36px); font-weight: 600; line-height: 1.2; letter-spacing: -1px; }
+  .demo-label { flex-shrink: 0; border: 1px solid #414141; border-radius: 20px; padding: 5px 12px; color: #ccc; font-size: 12px; background: #151515; }
+  .intro { margin: 12px 0 8px; color: #b5b5b5; }
+  .fixture-note { max-width: 760px; margin: 0 0 32px; color: #a6a6a6; font-size: 13px; }
+  #task-dashboard { border: 1px solid #303030; border-radius: 12px; background: #090909; }
+  #task-filters { display: flex; flex-wrap: wrap; align-items: end; gap: 16px; padding: 24px; border-bottom: 1px solid #303030; }
+  #task-filters > div { min-width: 0; }
+  .search-field { flex: 1 1 220px; }
+  label { display: block; margin-bottom: 8px; font-size: 12px; color: #c3c3c3; font-weight: 500; }
+  input, select { display: block; width: 100%; padding: 10px 12px; }
+  input::placeholder { color: #969696; }
+  select { padding-right: 28px; }
+  .filter-actions { display: flex; gap: 8px; }
+  .results-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding: 20px 24px; }
+  .results-heading h2 { margin: 0; font-size: 14px; font-weight: 600; }
+  #task-summary { margin: 0; color: #aaa; font-size: 12px; }
+  #task-list { margin: 0; padding: 0; list-style: none; }
+  .task-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 24px; border-top: 1px solid #262626; }
+  .task-content { display: grid; flex: 1; min-width: 0; justify-items: start; gap: 4px; }
+  .task-id { color: #999; font-size: 11px; letter-spacing: .04em; }
+  .task-title { min-height: 44px; max-width: 100%; margin: 0; padding: 4px 0; border: 0; border-radius: 2px; background: transparent; color: #f0f0f0; text-align: left; line-height: 1.5; overflow-wrap: anywhere; }
+  .task-title:hover:not(:disabled) { color: #8ec4ff; background: transparent; text-decoration: underline; }
+  .task-assignee { color: #aaa; font-size: 12px; }
+  .task-activity { display: grid; flex-shrink: 0; justify-items: end; gap: 12px; }
+  .task-badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border: 1px solid #454545; border-radius: 20px; color: #ccc; background: #202020; font-size: 11px; font-weight: 500; }
+  .task-badge::before { width: 6px; height: 6px; border-radius: 50%; background: currentColor; content: ""; }
+  .status-in-progress { color: #a4caff; border-color: #294d75; background: #10223a; }
+  .status-blocked { color: #f3c98a; border-color: #6a4d24; background: #2b2112; }
+  .status-done { color: #9cd5ae; border-color: #2d5941; background: #14271c; }
+  .task-updated { color: #aaa; font-size: 12px; }
+  #task-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 24px; border-top: 1px solid #303030; }
+  #task-pagination p { margin: 0; color: #aaa; font-size: 12px; }
+  #task-pagination > div { display: flex; gap: 8px; }
+  .state-message { margin: 0; padding: 48px 24px; text-align: center; color: #b5b5b5; }
+  .state-message h2, .state-message h3 { margin: 0 0 8px; color: #ededed; font-size: 18px; }
+  .state-message p { margin: 0 0 20px; }
+  .error-state { color: #ecc1a8; }
+  dialog { width: min(580px, calc(100% - 32px)); max-height: calc(100svh - 32px); padding: 24px; border: 1px solid #454545; border-radius: 12px; background: #101010; color: #ededed; overflow-y: auto; overflow-wrap: anywhere; }
+  dialog::backdrop { background: rgb(0 0 0 / .78); }
+  .dialog-close { display: flex; justify-content: end; margin-bottom: 16px; }
+  dialog h2 { margin: 0 0 16px; font-size: 22px; line-height: 1.4; }
+  #detail-body > p { color: #b5b5b5; white-space: pre-wrap; }
+  dialog dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px 24px; margin: 24px 0 0; padding-top: 20px; border-top: 1px solid #303030; }
+  dialog dt { color: #aaa; }
+  dialog dd { margin: 0; }
+  footer { padding-top: 24px; color: #999; font-size: 12px; }
+  footer span { margin: 0 5px; }
+  @media (max-width: 640px) {
+    .site-header { padding: 12px 20px; }
+    main { padding: 32px 16px 24px; }
+    .page-heading { align-items: start; flex-direction: column; }
+    #task-filters { padding: 20px 16px; gap: 16px 12px; }
+    #task-filters > div { flex: 1 1 calc(50% - 12px); }
+    #task-filters .search-field, #task-filters .filter-actions { flex-basis: 100%; }
+    .filter-actions button { flex: 1; }
+    .results-heading, .task-row, #task-pagination { padding-right: 16px; padding-left: 16px; }
+    .task-row { align-items: stretch; flex-direction: column; gap: 12px; }
+    .task-activity { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+    .task-updated { font-size: 11px; }
+    dialog { padding: 20px; }
+    dialog dl { gap: 12px 16px; }
+  }
+  @media (scripting: none) { #task-loading, #task-filters { display: none; } }
+</style>

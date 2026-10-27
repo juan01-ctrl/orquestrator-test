@@ -1,0 +1,274 @@
+[
+  {
+    "id": "DEMO-001",
+    "title": "Polish task activity dashboard",
+    "status": "in-progress",
+    "updatedAt": "2026-10-26T15:30:00Z"
+  },
+  {
+    "id": "DEMO-002",
+    "title": "Review keyboard navigation",
+    "status": "done",
+    "updatedAt": "2026-10-26T08:30:00Z",
+    "assignee": "Sam Rivera",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: review keyboard navigation."
+  },
+  {
+    "id": "DEMO-003",
+    "title": "Add pagination controls",
+    "status": "todo",
+    "updatedAt": "2026-10-26T01:30:00Z",
+    "assignee": "Jamie Chen",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: add pagination controls."
+  },
+  {
+    "id": "DEMO-004",
+    "title": "Investigate delayed task updates",
+    "status": "blocked",
+    "updatedAt": "2026-10-25T18:30:00Z",
+    "assignee": "Taylor Reed",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: investigate delayed task updates."
+  },
+  {
+    "id": "DEMO-005",
+    "title": "Write release notes",
+    "status": "in-progress",
+    "updatedAt": "2026-10-25T11:30:00Z",
+    "assignee": "Alex Morgan",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: write release notes."
+  },
+  {
+    "id": "DEMO-006",
+    "title": "Verify mobile layouts",
+    "status": "done",
+    "updatedAt": "2026-10-25T04:30:00Z"
+  },
+  {
+    "id": "DEMO-007",
+    "title": "Improve search result relevance",
+    "status": "todo",
+    "updatedAt": "2026-10-24T21:30:00Z",
+    "assignee": "Jamie Chen",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: improve search result relevance."
+  },
+  {
+    "id": "DEMO-008",
+    "title": "Document task ownership",
+    "status": "blocked",
+    "updatedAt": "2026-10-24T14:30:00Z",
+    "assignee": "Taylor Reed",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: document task ownership."
+  },
+  {
+    "id": "DEMO-009",
+    "title": "Review empty state copy",
+    "status": "in-progress",
+    "updatedAt": "2026-10-24T07:30:00Z",
+    "assignee": "Alex Morgan",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: review empty state copy."
+  },
+  {
+    "id": "DEMO-010",
+    "title": "Add deployment checklist",
+    "status": "done",
+    "updatedAt": "2026-10-24T00:30:00Z",
+    "assignee": "Sam Rivera",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: add deployment checklist."
+  },
+  {
+    "id": "DEMO-011",
+    "title": "Audit color contrast",
+    "status": "todo",
+    "updatedAt": "2026-10-23T17:30:00Z"
+  },
+  {
+    "id": "DEMO-012",
+    "title": "Refine status labels",
+    "status": "blocked",
+    "updatedAt": "2026-10-23T10:30:00Z",
+    "assignee": "Taylor Reed",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: refine status labels."
+  },
+  {
+    "id": "DEMO-013",
+    "title": "Prepare onboarding guide",
+    "status": "in-progress",
+    "updatedAt": "2026-10-23T03:30:00Z",
+    "assignee": "Alex Morgan",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: prepare onboarding guide."
+  },
+  {
+    "id": "DEMO-014",
+    "title": "Fix notification preferences",
+    "status": "done",
+    "updatedAt": "2026-10-22T20:30:00Z",
+    "assignee": "Sam Rivera",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: fix notification preferences."
+  },
+  {
+    "id": "DEMO-015",
+    "title": "Review project permissions",
+    "status": "todo",
+    "updatedAt": "2026-10-22T13:30:00Z",
+    "assignee": "Jamie Chen",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: review project permissions."
+  },
+  {
+    "id": "DEMO-016",
+    "title": "Simplify workspace navigation",
+    "status": "blocked",
+    "updatedAt": "2026-10-22T06:30:00Z"
+  },
+  {
+    "id": "DEMO-017",
+    "title": "Validate exported reports",
+    "status": "in-progress",
+    "updatedAt": "2026-10-21T23:30:00Z",
+    "assignee": "Alex Morgan",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: validate exported reports."
+  },
+  {
+    "id": "DEMO-018",
+    "title": "Update integration guide",
+    "status": "done",
+    "updatedAt": "2026-10-21T16:30:00Z",
+    "assignee": "Sam Rivera",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: update integration guide."
+  },
+  {
+    "id": "DEMO-019",
+    "title": "Review task details with a very long title that describes the complete investigation into keyboard focus restoration, mobile layout constraints, and the handling of missing optional task metadata without losing any useful context",
+    "status": "todo",
+    "updatedAt": "2026-10-21T09:30:00Z",
+    "assignee": "Jamie Chen",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: review task details with a very long title that describes the complete investigation into keyboard focus restoration, mobile layout constraints, and the handling of missing optional task metadata without losing any useful context."
+  },
+  {
+    "id": "DEMO-020",
+    "title": "Investigate failed import",
+    "status": "blocked",
+    "updatedAt": "2026-10-21T02:30:00Z",
+    "assignee": "Taylor Reed",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: investigate failed import."
+  },
+  {
+    "id": "DEMO-021",
+    "title": "Improve activity timestamps",
+    "status": "in-progress",
+    "updatedAt": "2026-10-20T19:30:00Z"
+  },
+  {
+    "id": "DEMO-022",
+    "title": "Test browser history navigation",
+    "status": "done",
+    "updatedAt": "2026-10-20T12:30:00Z",
+    "assignee": "Sam Rivera",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: test browser history navigation."
+  },
+  {
+    "id": "DEMO-023",
+    "title": "Clean up archived milestones",
+    "status": "todo",
+    "updatedAt": "2026-10-20T05:30:00Z",
+    "assignee": "Jamie Chen",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: clean up archived milestones."
+  },
+  {
+    "id": "DEMO-024",
+    "title": "Review accessibility feedback",
+    "status": "blocked",
+    "updatedAt": "2026-10-19T22:30:00Z",
+    "assignee": "Taylor Reed",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: review accessibility feedback."
+  },
+  {
+    "id": "DEMO-025",
+    "title": "Plan next release",
+    "status": "in-progress",
+    "updatedAt": "2026-10-19T15:30:00Z",
+    "assignee": "Alex Morgan",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: plan next release."
+  },
+  {
+    "id": "DEMO-026",
+    "title": "Check task assignment flow",
+    "status": "done",
+    "updatedAt": "2026-10-19T08:30:00Z"
+  },
+  {
+    "id": "DEMO-027",
+    "title": "Update help center articles",
+    "status": "todo",
+    "updatedAt": "2026-10-19T01:30:00Z",
+    "assignee": "Jamie Chen",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: update help center articles."
+  },
+  {
+    "id": "DEMO-028",
+    "title": "Resolve duplicate notifications",
+    "status": "blocked",
+    "updatedAt": "2026-10-18T18:30:00Z",
+    "assignee": "Taylor Reed",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: resolve duplicate notifications."
+  },
+  {
+    "id": "DEMO-029",
+    "title": "Refine loading feedback",
+    "status": "in-progress",
+    "updatedAt": "2026-10-18T11:30:00Z",
+    "assignee": "Alex Morgan",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: refine loading feedback."
+  },
+  {
+    "id": "DEMO-030",
+    "title": "Review retry behavior",
+    "status": "done",
+    "updatedAt": "2026-10-18T04:30:00Z",
+    "assignee": "Sam Rivera",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: review retry behavior."
+  },
+  {
+    "id": "DEMO-031",
+    "title": "Prepare sample project",
+    "status": "todo",
+    "updatedAt": "2026-10-17T21:30:00Z"
+  },
+  {
+    "id": "DEMO-032",
+    "title": "Verify status filter combinations",
+    "status": "blocked",
+    "updatedAt": "2026-10-17T14:30:00Z",
+    "assignee": "Taylor Reed",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: verify status filter combinations."
+  },
+  {
+    "id": "DEMO-033",
+    "title": "Update dependency inventory",
+    "status": "in-progress",
+    "updatedAt": "2026-10-17T07:30:00Z",
+    "assignee": "Alex Morgan",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: update dependency inventory."
+  },
+  {
+    "id": "DEMO-034",
+    "title": "Review monitoring checklist",
+    "status": "done",
+    "updatedAt": "2026-10-17T00:30:00Z",
+    "assignee": "Sam Rivera",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: review monitoring checklist."
+  },
+  {
+    "id": "DEMO-035",
+    "title": "Investigate SearchResultWrappingForAnExtremelyLongUnbrokenTaskTitleThatMustRemainReadableOnNarrowMobileScreensAndInsideTheTaskDetailsDialogWithoutIntroducingAnyHorizontalOverflow",
+    "status": "todo",
+    "updatedAt": "2026-10-16T17:30:00Z",
+    "assignee": "Jamie Chen",
+    "description": "Local sample task for the Orchestrix dashboard. Review and complete: investigate searchresultwrappingforanextremelylongunbrokentasktitlethatmustremainreadableonnarrowmobilescreensandinsidethetaskdetailsdialogwithoutintroducinganyhorizontaloverflow."
+  },
+  {
+    "id": "DEMO-036",
+    "title": "Publish internal documentation draft",
+    "status": "blocked",
+    "updatedAt": "2026-10-16T10:30:00Z"
+  }
+]
